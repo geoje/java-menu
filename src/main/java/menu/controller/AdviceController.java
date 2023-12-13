@@ -21,9 +21,11 @@ public class AdviceController {
 
     private static void notifyResult(Coaches coaches) {
         OutputView.printResultTitle();
-        OutputView.printCategoryMessage("한식", "양식", "일식", "중식", "아시안");
-        OutputView.printAdviceMessage("구구", "김치찌개", "스파게티", "규동", "짜장면", "카오 팟");
-        OutputView.printAdviceMessage("제임스", "제육볶음", "라자냐", "가츠동", "짬뽕", "파인애플 볶음밥");
+        coaches.calculateLunches();
+        OutputView.printCategoryMessage(coaches.getCategories().toArray());
+        coaches.getCoaches().forEach(coach -> {
+            OutputView.printAdviceMessage(coach.getName().name(), coach.getWeekdayLunches().toArray());
+        });
         OutputView.printFinishTitle();
     }
 
