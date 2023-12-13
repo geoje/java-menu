@@ -5,10 +5,22 @@ import menu.domain.Names;
 import menu.view.InputView;
 import menu.view.OutputView;
 
+import java.util.function.Supplier;
+
 public class AdviceController {
     public static void run() {
         notifyStart();
         Names names = requestNames();
+    }
+
+    private static <T> T requestUntilValidated(Supplier<T> supplier) {
+        while (true) {
+            try {
+                return supplier.get();
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 
     private static void notifyStart() {
@@ -16,6 +28,6 @@ public class AdviceController {
     }
 
     private static Names requestNames() {
-        return Names.from(InputView.readNames());
+        return requestUntilValidated(() -> Names.from(InputView.readNames()));
     }
 }
