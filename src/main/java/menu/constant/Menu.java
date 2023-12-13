@@ -84,4 +84,9 @@ public enum Menu {
     public MenuType getType() {
         return type;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
