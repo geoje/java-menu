@@ -6,7 +6,7 @@ import static menu.constant.ErrorMessage.EXCEPTION_PREFIX;
 
 public class OutputView {
 
-    private static void printGeneralMessage(GeneralMessage message, Object... args) {
+    public static void printGeneralMessage(GeneralMessage message, Object... args) {
         System.out.printf(message + "%n", args);
     }
 
