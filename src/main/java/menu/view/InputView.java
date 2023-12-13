@@ -11,10 +11,14 @@ public class InputView {
     }
 
     public static String readNames() {
-        return readWithGeneralMessage(GeneralMessage.REQUEST_NAMES);
+        String result = readWithGeneralMessage(GeneralMessage.REQUEST_NAMES);
+        System.out.println();
+        return result;
     }
 
     public static String readUneatable(String name) {
-        return readWithGeneralMessage(GeneralMessage.REQUEST_UNEATABLE, name);
+        String result = readWithGeneralMessage(GeneralMessage.REQUEST_UNEATABLE, name);
+        System.out.println();
+        return result;
     }
 }
