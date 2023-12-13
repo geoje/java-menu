@@ -2,6 +2,9 @@ package menu.view;
 
 import menu.constant.GeneralMessage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static menu.constant.ErrorMessage.EXCEPTION_PREFIX;
 import static menu.constant.GeneralMessage.*;
 
@@ -15,8 +18,11 @@ public class OutputView {
         System.out.printf(NOTIFY_CATEGORY + "%n", categories);
     }
 
-    public static void printAdviceMessage(Object... nameAndMenus) {
-        System.out.printf(NOTIFY_NAME_AND_MENUS + "%n", nameAndMenus);
+    public static void printAdviceMessage(String name, Object... menus) {
+        List<Object> nameAndMenus = new ArrayList<>();
+        nameAndMenus.add(name);
+        nameAndMenus.addAll(List.of(menus));
+        System.out.printf(NOTIFY_NAME_AND_MENUS + "%n", nameAndMenus.toArray());
     }
 
     public static void printErrorMessage(String message) {
