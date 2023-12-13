@@ -2,7 +2,7 @@ package menu.constant;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 import static menu.constant.MenuType.*;
 
@@ -66,11 +66,15 @@ public enum Menu {
         this.type = type;
     }
 
+    public static Optional<Menu> getByName(String name) {
+        return Arrays.stream(values()).filter(menu -> menu.name.equals(name)).findFirst();
+    }
+
     public static List<Menu> getAllByTypeWithoutSome(MenuType type, List<Menu> exclude) {
         return Arrays.stream(values())
                 .filter(menu -> !menu.type.equals(type))
                 .filter(menu -> !exclude.contains(menu))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public String getName() {
