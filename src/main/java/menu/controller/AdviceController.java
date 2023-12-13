@@ -15,16 +15,6 @@ public class AdviceController {
         notifyResult(coaches);
     }
 
-    private static <T> T requestUntilValidated(Supplier<T> supplier) {
-        while (true) {
-            try {
-                return supplier.get();
-            } catch (IllegalArgumentException e) {
-                OutputView.printErrorMessage(e.getMessage());
-            }
-        }
-    }
-
     private static void notifyStart() {
         OutputView.printStartTitle();
     }
@@ -35,6 +25,16 @@ public class AdviceController {
         OutputView.printAdviceMessage("구구", "김치찌개", "스파게티", "규동", "짜장면", "카오 팟");
         OutputView.printAdviceMessage("제임스", "제육볶음", "라자냐", "가츠동", "짬뽕", "파인애플 볶음밥");
         OutputView.printFinishTitle();
+    }
+
+    private static <T> T requestUntilValidated(Supplier<T> supplier) {
+        while (true) {
+            try {
+                return supplier.get();
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 
     private static Names requestNames() {
