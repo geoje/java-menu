@@ -17,7 +17,7 @@ public record Names(List<Name> names) {
     }
 
     public static Names from(String names) {
-        return new Names(Arrays.stream(names.split(DELIMITER)).map(Name::new).collect(Collectors.toList()));
+        return new Names(Arrays.stream(names.split(DELIMITER)).map(Name::new).toList());
     }
 
     private static void validateCount(List<Name> names) {
