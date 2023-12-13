@@ -18,7 +18,13 @@ public record Menus(List<Menu> menus) {
     }
 
     public static Menus from(String menus) {
-        List<Optional<Menu>> parsedMenus = Arrays.stream(menus.split(DELIMITER)).map(Menu::getByName).toList();
+        if (menus.isBlank()) {
+            return new Menus(List.of());
+        }
+        List<Optional<Menu>> parsedMenus = Arrays.stream(menus.split(DELIMITER))
+                .map(String::trim)
+                .map(Menu::getByName)
+                .toList();
         validateExist(parsedMenus);
         return new Menus(parsedMenus.stream().map(Optional::get).toList());
     }
